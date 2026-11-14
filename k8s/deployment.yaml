@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: research-analyst
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: research-analyst
+  template:
+    metadata:
+      labels:
+        app: research-analyst
+    spec:
+      containers:
+        - name: research-analyst
+          image: research-analyst:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: research-analyst-config
+            - secretRef:
+                name: research-analyst-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

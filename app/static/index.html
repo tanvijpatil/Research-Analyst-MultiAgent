@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Analyst Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="eyebrow">GENAI • MULTI-AGENT RESEARCH</div>
+      <h1>Research Analyst Assistant</h1>
+      <p>Ask a question. Three AI agents analyze, research, and review the response.</p>
+    </header>
+    <section class="panel">
+      <label for="question">Your research question</label>
+      <textarea id="question" rows="4" placeholder="Example: What are the key practices for evaluating a machine learning classification model?"></textarea>
+      <button id="askButton">Analyze research question</button>
+      <p id="status" role="status"></p>
+    </section>
+    <section id="result" class="panel hidden">
+      <h2>Reviewed research response</h2>
+      <div id="answer" class="answer"></div>
+      <h3>Consulted sample sources</h3>
+      <ul id="sources"></ul>
+      <p id="disclaimer" class="disclaimer"></p>
+    </section>
+    <footer>Coursework demonstration • FastAPI + Agno + Groq</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
